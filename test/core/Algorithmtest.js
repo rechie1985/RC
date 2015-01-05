@@ -1,5 +1,4 @@
 
-try{
 define(['Algorithm'], function(Algorithm) {
 	describe("A suite of Algorithm functions", function() {
 	    it("findNear in array",function(){
@@ -18,7 +17,4 @@ define(['Algorithm'], function(Algorithm) {
 	    	expect([1,2,3, 99921, 99999]).toEqual(arr);
 	    });
 	});
-})
-} catch(e) {
-	console.log(e.message || e)
-}
+});
