@@ -1,4 +1,4 @@
-define( ['./RC', './EventUtil'], function(RC, EventUtil){
+define( ['RC', 'EventUtil'], function(RC, EventUtil){
     RC.Slide = function(opt){
         var that = this;
         that.isSlide = false;

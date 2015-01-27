@@ -1,4 +1,4 @@
-define(['./RC'], function(){
+define(['RC'], function(){
 	/**
 	 * TODO 事件处理函数，想分开为兼容PC的全版本和只兼容移动端的移动版本
 	 * 先封装只兼容移动端的版本
