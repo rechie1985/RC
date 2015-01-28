@@ -20,8 +20,7 @@ module.exports = function(config) {
       // {pattern: 'test/*.js', included: false},
       {pattern: 'core/*.js', included: false},
       {pattern: 'util/*.js', included: false},
-      {pattern: 'test/core/*Test.js', included: false},
-      {pattern: 'test/util/*Test.js', included: false}
+      {pattern: 'test/*/*Test.js', included: false}
     ],
 
 

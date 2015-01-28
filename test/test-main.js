@@ -18,7 +18,8 @@ require.config({
 
   paths: {
       'Algorithm': 'core/Algorithm',
-      'RC': 'core/RC'
+      'RC': 'core/RC',
+      'MathUtil': 'util/MathUtil'
   },
   // dynamically load all test files
   deps: allTestFiles,

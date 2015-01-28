@@ -71,6 +71,27 @@ define(function () {
             }
 
             return pList;
+        },
+        /**
+         * 浮点乘法
+         * @param  {Number} num1 乘数
+         * @param  {Number} num2 被乘数
+         * @return {Number}      结果
+         */
+        accMu: function(num1, num2) {
+            var r1, r2;
+            try{
+                r1=num1.toString().split('.')[1].length
+            } catch(e){
+                r1=0;
+            }
+            try{
+                r2=num2.toString().split('.')[1].length
+            } catch(e){
+                r2=0;
+            }
+            var result = num1 * Math.pow(10, r1) * num2 * Math.pow(10, r2) / Math.pow(10, r1+r2) ;
+            return result;
         }
     };
     return MathUtil;

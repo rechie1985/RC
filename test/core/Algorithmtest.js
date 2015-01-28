@@ -1,4 +1,3 @@
-
 define(['Algorithm'], function(Algorithm) {
 	describe("A suite of Algorithm functions", function() {
 	    it("findNear in array",function(){
