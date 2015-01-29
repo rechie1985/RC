@@ -1,11 +1,3 @@
-// document.onreadystatechange = function () { 
-// 	if(document.readyState == "complete"){ 
-// 		init();
-// 	}  
-// }
-require.config({
-
-});
 require(['js/SwipeList', 'js/Fastclick'], function(SwipeList, FastClick) {
     FastClick.attach(document.body);
     var swipeOpts = {

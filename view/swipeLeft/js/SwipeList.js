@@ -25,6 +25,16 @@ define('js/SwipeList', ['js/Swipe'], function(Swipe){
         var opts = merge(defaultOpts, options);
         var swipeLeftFlag = false;
         var swipeElem = null;
+        var options = {
+            elemQuery: opts.elemQuery,
+            direction: 'horizontal',
+            respOffset: opts.respOffset, 
+            beforeSwipe: beforeSwipe,
+            swipeMove: swipeMove,
+            swipeEnd: swipeEnd   
+        }
+        var swipe = new Swipe(options);
+        swipe.init();
 
         function beforeSwipe(elems) {
             if(this.target.className.indexOf('btn') > -1) {
@@ -107,17 +117,6 @@ define('js/SwipeList', ['js/Swipe'], function(Swipe){
                 animate($elem, Xoffset, targetOffset, callback);
             });
         }   
-        var options = {
-            elemQuery: opts.elemQuery,
-            direction: 'horizontal',
-            respOffset: opts.respOffset, 
-            beforeSwipe: beforeSwipe,
-            swipeMove: swipeMove,
-            swipeEnd: swipeEnd   
-        }
-        var swipe = new Swipe(options);
-        swipe.init();
-
 
         return {
             bSwipe: function() {
