@@ -5,11 +5,10 @@ require.config({
 	}
 });
 require(["animate"], function(animate) {
-	console.log(animate);
 	var animElem = document.getElementById('item1');
-	animate.run(animElem, 'left', '500px', 5000, 60);
-	var animElem = document.getElementById('item2');
-	animate.run(animElem, 'left', '500px', 5000, 30);
-	var animElem = document.getElementById('item3');
-	animate.run(animElem, 'left', '500px', 5000, 10);
+	animate.start(animElem, 'left', '500px', 5000, 60);
+	// var animElem = document.getElementById('item2');
+	// animate.start(animElem, 'left', '500px', 5000, 30);
+	// var animElem = document.getElementById('item3');
+	// animate.start(animElem, 'left', '500px', 5000, 10);
 });
