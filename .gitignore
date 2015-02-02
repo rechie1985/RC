@@ -49,3 +49,5 @@ node_modules/
 *.log
 >>>>>>> parent of 7f9ec42... Revert "增加单元测试模块"
 coverage
+*.zip
+*.rar

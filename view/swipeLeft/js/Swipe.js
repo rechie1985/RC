@@ -26,6 +26,12 @@ define('js/Swipe', function() {
         }
         return a;
     }
+    // Function.prototype.bind = Function.prototype.bind || function(ctx){
+    //     var that = this;
+    //     return function(){
+    //         that.call(ctx, arguments);
+    //     }
+    // };
     var Swipe = (function () {
         function Swipe(options) {
             var _this = this;

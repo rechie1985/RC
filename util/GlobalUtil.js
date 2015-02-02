@@ -338,13 +338,9 @@ define(function (require, exports, module) {
     /**
      * 判断对象类型
      */
-    'String Function Object Array Number Null Undefined Boolean'.split(' ').forEach(function(obj, index) {
-        GlobalUtil['is' + obj] = function(typeObj) {
-            var type = Object.prototype.toString.call(obj);
-            if(type === '[object ' + obj + ']') {
-                return true;
-            }
-            return false;
+    'String Function Object Array Number Null Undefined Boolean'.split(' ').forEach(function(name, index) {
+        GlobalUtil['is' + name] = function(typeObj) {
+            return Object.prototype.toString.call(typeObj) === '[object ' + name + ']';
         }
     });
     /**
