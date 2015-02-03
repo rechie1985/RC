@@ -1,10 +1,12 @@
-define(['util/GlobalUtil'], function(GlobalUtil) {
-	var Animate = function(elem, styleName, endValue, duration, fps) {
+define(['util/GlobalUtil', 'core/tween'], function(GlobalUtil, tween) {
+	var Animate = function(elem, styleName, endValue, duration, fps, easeType) {
 		this.elem = elem;
 		this.styleName = styleName;
 		this.endValue = endValue;
 		this.duration = duration;
 		this.fps = fps || 60;
+		// 缓动默认为线性
+		this.ease = tween[easeType] || tween.linear;
 	}
 	/**
 	 * 动画开始时，初始化计算出需要的各种值
@@ -16,11 +18,12 @@ define(['util/GlobalUtil'], function(GlobalUtil) {
 		this.acc = 0;
 		this._timeId = null;
 		this.timeoutDelay = 1000 / this.fps;
-		var originOffset = this.getNumber(this.elem.style[this.styleName]);
+		this.updateCount = 0;
+		this.sumCount = Math.ceil(this.duration/this.timeoutDelay);
+		this.originOffset = this.getNumber(this.elem.style[this.styleName]);
 		this.endOffset = this.getNumber(this.endValue);
-		// 每毫秒的位移量
-		this.pOffset = (this.endOffset - originOffset) / this.duration;
-		this.curOffset = originOffset;
+		this.change = this.endOffset - this.originOffset;
+		this.curOffset = this.originOffset;
 	};
 
 	/**
@@ -74,6 +77,7 @@ define(['util/GlobalUtil'], function(GlobalUtil) {
             this.acc += dt; 
             // 当时间大于我们的固定的时间片的时候可以进行更新
             while(this.acc >= this.timeoutDelay) { 
+            	this.updateCount ++;
 				this.update(this.timeoutDelay);
                 this.acc -= this.timeoutDelay;
            	}
@@ -100,7 +104,8 @@ define(['util/GlobalUtil'], function(GlobalUtil) {
 	 * @return {}    
 	 */
 	Animate.prototype.update = function(dt) {
-		this.curOffset += this.pOffset * dt;
+		this.curOffset = this.originOffset + this.change * this.ease(dt*this.updateCount/this.duration) ;
+		console.log(this.curOffset)
 	}
 
 	/**
@@ -124,8 +129,8 @@ define(['util/GlobalUtil'], function(GlobalUtil) {
 	
 
 	return {
-		start: function(elem, styleName, endValue, duration, fps) {
-			new Animate(elem, styleName, endValue, duration, fps).start();
+		start: function(elem, styleName, endValue, duration, fps, easeType) {
+			new Animate(elem, styleName, endValue, duration, fps, easeType).start();
 		}
 	}
 });
