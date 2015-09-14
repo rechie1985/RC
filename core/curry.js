@@ -1,26 +1,21 @@
 define(function(){
-  function curry(func){
-    return function(){
-      var tmp = [];
-      tmp.push(arguments[0]);
-      if(arguments.length === 1) {
-        return function() {
-          var args1 = [].slice.call(arguments);
-          var innerTmp = tmp.concat(args1);
-          console.log(func.name)
-          console.log(func.length, innerTmp.length);
-          console.log(args1)
-          if(func.length < innerTmp.length || func.length === innerTmp.length) {
-            return func.apply(this, innerTmp);
-          } else {
-            console.log('return callee')
-            return arguments.callee.bind(args1);
+
+  function curry(func) {
+      function innerCall() {
+        var tmp = [];
+        var args1 = [].slice.call(arguments);
+        var innerTmp = tmp.concat(args1);
+        // 如果临时参数长度大于等于已需参数长度，则执行，否则继续返回callee并拼接
+        if(func.length < innerTmp.length || func.length === innerTmp.length) {
+          return func.apply(this, innerTmp);
+        } else {
+          return function() {
+            var tmpArgs = [].slice.call(arguments);
+            return innerCall.apply(this, innerTmp.concat(tmpArgs));
           }
-        };
-      } else {
-        return func.apply(this, arguments);
+        }
       }
-    };
+      return innerCall;
   }
   return curry;
 });

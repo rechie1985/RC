@@ -15,31 +15,32 @@ define(['curry'], function (curry) {
         return ary.map(f);
     });
     describe('curry test', function () {
-        //it('match', function () {
-        //    var hasSpaces = match(/\s+/g);
-        //    var expectArr = hasSpaces("hello world");
-        //    expect(expectArr).toEqual([' ']);
-        //});
-        //it('match 2', function () {
-        //    var expect1 = match(/\s+/g, "hello world");
-        //    expect(expect1).toEqual([' ']);
-        //});
-        //it('filter', function(){
-        //    var hasSpaces = match(/\s+/g);
-        //    var expectObj = filter(hasSpaces, ["tori_spelling", "tori amos"]);
-        //    expect(expectObj).toEqual(['tori amos']);
-        //});
-        //it('findSpace', function(){
-        //    var hasSpaces = match(/\s+/g);
-        //    var findSpaces = filter(hasSpaces);
-        //    var expectObj = findSpaces(["tori_spelling", "tori amos"]);
-        //    expect(expectObj).toEqual(['tori amos']);
-        //});
+        it('match', function () {
+           var hasSpaces = match(/\s+/g);
+           var expectArr = hasSpaces("hello world");
+           expect(expectArr).toEqual([' ']);
+        });
+        it('match 2', function () {
+           var expect1 = match(/\s+/g, "hello world");
+           expect(expect1).toEqual([' ']);
+        });
+        it('filter', function(){
+           var hasSpaces = match(/\s+/g);
+           var expectObj = filter(hasSpaces, ["tori_spelling", "tori amos"]);
+           expect(expectObj).toEqual(['tori amos']);
+        });
+        it('findSpace', function(){
+           var hasSpaces = match(/\s+/g);
+           var findSpaces = filter(hasSpaces);
+           var expectObj = findSpaces(["tori_spelling", "tori amos"]);
+           expect(expectObj).toEqual(['tori amos']);
+        });
         it('censored', function(){
             var noVowels = replace(/[aeiou]/ig);
             var censored = noVowels("*");
             var expectObj = censored("Chocolate Rain");
-            expect(expectObj).toEqual('Ch*c*l*t* R**n');
+            var expectObj = map(censored, ['Chocolate Rain', 'Hello World']);
+            expect(expectObj).toEqual(['Ch*c*l*t* R**n', 'H*ll* W*rld']);
         });
     });
 });
