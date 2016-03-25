@@ -333,6 +333,53 @@ define(function (require, exports, module) {
                 }
             }
             return filterList;
+        },
+        getHashByKey: function(key) {
+            var hashObj = util.getHashObj();
+            var value = null;
+            if(hashObj) {
+                value = hashObj[key];
+            }
+            return value;
+            // return util.getHashObj()[key];
+        },
+        getHashObj: function() {
+            var obj = {};
+            var hashStr = location.hash;
+            if(hashStr.length > 1) {
+                var kbList = hashStr.substring(1).split('&');
+                for(var i=0; i<kbList.length; i++) {
+                    var kbStr = kbList[i];
+                    var tmpList = kbStr.split('=');
+                    obj[tmpList[0]] = tmpList[1];
+                }
+            }
+            return obj;
+        },
+        /**
+         * 填充字符串或数字到指定长度
+         * @param  {String or Number} input  原始字符串或者数字
+         * @param  {Number} length 填充后的长度
+         * @param  {String} chr    填充的字符串
+         * @return {String}        填充后的字符串
+         */
+        padLeft: function(input, length, chr) {
+          var newStr;
+          if(typeof input !== 'number' && typeof input !== 'string') {
+            console.error('padLeft params input must be Number or string');
+            return ;
+          }
+          newStr = '' + input;
+          var strLength = newStr.length;
+          chr = typeof chr !== 'string' ? ' ' : chr;
+          if(!!length && length > 0) {
+            var diff = length - strLength;
+            while(diff>0) {
+              newStr = chr + newStr;
+              diff --;
+            }
+          }
+          return newStr;
         }
     };
     /**
